@@ -2,6 +2,8 @@ import { StyleSheet, Text, View, useState, TouchableWithoutFeedback, Button } fr
 import React from 'react'
 import Input from '../Components/Input'
 import NumberContainer from '../Components/NumberContainer'
+import Card from '../Components/Card'
+import Colors from '../Constants/Colors'
 
 const StartGameScreen = () => {
 
@@ -28,15 +30,13 @@ const StartGameScreen = () => {
         setEnteredValue('')
     }
 
-    const confirmedOutput = confirmed ? <Text>Numero elegido: {selectedNumber}</Text>: null;
-
     return (
-        <TouchableWithoutFeedback onpress={() => {
+        <TouchableWithoutFeedback onPress={() => {
             Keyboard.dismiss()
         }}>
         <View style={styles.container}>
             <Text style={styles.title}>Comenzar juego</Text>
-            <Card style={styles.inputcontainer}>
+            <Card style={styles.inputContainer}>
                 <Text style={styles.inputDescriptionText}>Elija un número</Text>
                 <Input style={styles.input}
                 blurOnSubmit
@@ -45,14 +45,14 @@ const StartGameScreen = () => {
                 keyboardType='number-pad'
                 maxLength={2}
                 value={enteredValue}
-                onchangeText={numberInputHandler}
-            />
+                onChangeText={numberInputHandler}
+                />
             <View style={styles.buttonsContainer}>
                 <View style={styles.button}>
-                    <Button title='Limpiar' onPress={resetInputHandler} color={COLORS.accent}/>
+                    <Button title='Limpiar' onPress={resetInputHandler} color={Colors.accent}/>
                 </View>
                 <View style={styles.button}>
-                <Button title='Confirmar' onPress={confirmedInputHandler} color={COLORS.primary}/>
+                <Button title='Confirmar' onPress={confirmedInputHandler} color={Colors.primary}/>
                 </View>
             </View>
             </Card>
@@ -70,4 +70,31 @@ const StartGameScreen = () => {
 
 export default StartGameScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 10,
+        alignItems: 'center'
+    },
+    title: {
+        fontSize: 20,
+        marginVertical: 10
+    },
+    inputContainer: {
+        width: 300,
+        maxWidth: '80%'
+    },
+    inputDescriptionText: {
+        textAlign: 'center'
+    },
+    input: {
+        width: 50,
+        textAlign: 'center'
+    },
+    buttonsContainer: {
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'space-between',
+        paddingHorizontal: 15
+    }
+})
